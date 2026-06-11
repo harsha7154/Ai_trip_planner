@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: odisha-trip-planner
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATA_FILE
+        value: data/places.xlsx
+      - key: CORS_ORIGINS
+        value: '["*"]'
+      # Set the following in Render Dashboard → Environment (keep secret):
+      # GROQ_API_KEY
+      # GEMINI_API_KEY
+      # OPENWEATHER_API_KEY
+      # GEOAPIFY_API_KEY
